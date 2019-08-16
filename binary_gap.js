@@ -34,11 +34,7 @@ function isInScope(num) {
     const min = 1;
     const max = 2147483647;
 
-    if (Number.isInteger(num) && num >= min && num <= max) {
-        return true;
-    }
-
-    return false;
+    return Number.isInteger(num) && num >= min && num <= max;
 }
 
 /**
@@ -51,17 +47,21 @@ function calculateBinaryGap(arr) {
     let count = [];
     let insideCount = 0;
 
-    for (i = 0; i < ln; i++) {
-        if (arr[i] == 0) {
-            if(arr[i] == arr[i + 1]) {
+    // Loop thought binary array.
+    for (let i = 0; i < ln; i++) {
+        // Count all zeros in a row
+        if (arr[i] === "0") {
+            if(arr[i] === arr[i + 1]) {
                 insideCount++;
             }
-        } else if (arr[i] == 1 && insideCount > 0) {
+        } else if (arr[i] === "1" && insideCount > 0) {
+            // Reset counter if element is not zero.
             count.push(insideCount + 1);
             insideCount = 0;
         }
     }
-    
+
+    // Return biggest number from array.
     let solution = Math.max.apply(Math, count);
     
     if (typeof solution === "number" && solution >= 0) {
@@ -77,10 +77,13 @@ function calculateBinaryGap(arr) {
  * @returns {number}
  */
 function theSolution(num) {
-    // Is in scope.
+    // Is it integer between 1 and 2147483647
     if (isInScope(num)) {
+        // Convert integer to binary.
         let binary = dec2bin(num);
+        // Convert binary to string
         let binaryString = binary.toString();
+        // Convert string to array.
         let binaryArr = binaryString.slice('');
         
         return calculateBinaryGap(binaryArr);
