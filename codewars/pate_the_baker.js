@@ -23,8 +23,6 @@ function cakes(recipe, available) {
         result.push(isNaN(howMeny) ? 0 : howMeny);
     }
 
-    console.log(result);
-
     let min = Math.min.apply(null, result);
 
     return Math.floor(min);
