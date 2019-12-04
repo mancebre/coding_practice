@@ -15,21 +15,20 @@
  **/
 
 function narcissistic(value) {
-    // split number to individual digts
-    let numArr = value.toString().split('');
+  // split number to individual digts
+  let numArr = value.toString().split("");
 
-    // get power number
-    let power = numArr.length;
+  // get power number
+  let power = numArr.length;
 
-    // check is narcisstic number (return boolean)
-    let result = 0;
-    for (let i = 0; i < numArr.length; i++) {
-        result += Math.pow(numArr[i], power);
-    }
+  // check is narcisstic number (return boolean)
+  let result = 0;
+  for (let i = 0; i < numArr.length; i++) {
+    result += Math.pow(numArr[i], power);
+  }
 
-    return result === value;
+  return result === value;
 }
-
 
 console.log(narcissistic(153));
 console.log(narcissistic(7));
