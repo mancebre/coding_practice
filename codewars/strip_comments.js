@@ -21,20 +21,25 @@
  */
 
 function solution(input, markers) {
-    var lines = input.split("\n");
+  var lines = input.split("\n");
 
-    for(let i = 0; i < lines.length; i++) {
-        markers.forEach(function (marker) {
-            if(lines[i].indexOf(marker) !== -1) {
-                lines[i] = (lines[i].substring(0, lines[i].indexOf(marker))).replace(/\s+$/, '');
-            }
-        })
-    }
+  for (let i = 0; i < lines.length; i++) {
+    markers.forEach(function(marker) {
+      if (lines[i].indexOf(marker) !== -1) {
+        lines[i] = lines[i]
+          .substring(0, lines[i].indexOf(marker))
+          .replace(/\s+$/, "");
+      }
+    });
+  }
 
-    return lines.join("\n");
-};
+  return lines.join("\n");
+}
 
-var result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+var result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", [
+  "#",
+  "!"
+]);
 // result should == "apples, pears\ngrapes\nbananas"
 
 console.log(result);

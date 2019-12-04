@@ -16,20 +16,18 @@ Your function should take an amount to change and an array of unique denominatio
   URL: "https://www.codewars.com/kata/541af676b589989aed0009e7/train/javascript"
 */
 
-
 var countChange = function(money, coins) {
-    console.log(money , coins);
-    if(money < 0 || coins.length === 0)
-      return 0
-    else if(money === 0)
-      return 1
-    else
-      return countChange(money - coins[0], coins) + countChange(money, coins.slice(1))
-}
+  console.log(money, coins);
+  if (money < 0 || coins.length === 0) return 0;
+  else if (money === 0) return 1;
+  else
+    return (
+      countChange(money - coins[0], coins) + countChange(money, coins.slice(1))
+    );
+};
 
-let result = countChange(4, [1,2]);
+let result = countChange(4, [1, 2]);
 console.log("Result", result);
-
 
 // console.log(countChange(4, [1,2]), 3, 'Simple case');
 // console.log(countChange(10, [5,2,3]), 4, 'Another simple case');

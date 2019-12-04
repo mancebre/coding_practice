@@ -36,38 +36,36 @@ with relation to running multiple processes at the same time: https://en.wikiped
  */
 
 function queueTime(customers, n) {
+  if (n == 1) {
+    return customers.reduce((a, b) => a + b, 0);
+  }
+  var total = 0,
+    rest;
 
-    if(n == 1) {
-        return customers.reduce((a, b) => a + b, 0);
-    }
-    var total = 0, rest;
+  var group = customers.splice(0, n);
 
-    var group = customers.splice(0, n);
-
-    return calculateTime(total, group, customers);
+  return calculateTime(total, group, customers);
 }
 
 function calculateTime(total, group, customers) {
-    
-    var min = Math.min.apply(null, group);
-    var index = group.indexOf(min);
+  var min = Math.min.apply(null, group);
+  var index = group.indexOf(min);
 
-    group.splice(index, 1);
-    for(let i = 0; i < group.length; i++) {
-        group[i] -= min;
-    }
+  group.splice(index, 1);
+  for (let i = 0; i < group.length; i++) {
+    group[i] -= min;
+  }
 
-    total += min;
-    
-    if(customers.length > 0) {
-        group.push(customers.shift());
-        total = calculateTime(total, group, customers);
-    } else if(customers.length === 0 && group.length > 0) {
-        total = calculateTime(total, group, customers);
-    }
+  total += min;
 
-    return total;
-    
+  if (customers.length > 0) {
+    group.push(customers.shift());
+    total = calculateTime(total, group, customers);
+  } else if (customers.length === 0 && group.length > 0) {
+    total = calculateTime(total, group, customers);
+  }
+
+  return total;
 }
 
 // function queueTime(customers, n) {
@@ -83,13 +81,50 @@ function calculateTime(total, group, customers) {
 //     return Math.max(...tills);
 // }
 
-console.log(queueTime([5,3,4], 1), 12);
-console.log(queueTime([10,2,3,3], 2), 10);
-console.log(queueTime([2,3,10], 2), 12);
+console.log(queueTime([5, 3, 4], 1), 12);
+console.log(queueTime([10, 2, 3, 3], 2), 10);
+console.log(queueTime([2, 3, 10], 2), 12);
 
 console.log(queueTime([], 1), 0);
-console.log(queueTime([1,2,3,4], 1), 10);
-console.log(queueTime([2,2,3,3,4,4], 2), 9);
-console.log(queueTime([1,2,3,4,5], 100), 5);
+console.log(queueTime([1, 2, 3, 4], 1), 10);
+console.log(queueTime([2, 2, 3, 3, 4, 4], 2), 9);
+console.log(queueTime([1, 2, 3, 4, 5], 100), 5);
 
-console.log("result", queueTime([11,43,45,42,6,45,19,18,13,24,40,33,50,5,10,41,19,24,29,45,18,8,22,39,24,26,39,19,18], 4), 202);
+console.log(
+  "result",
+  queueTime(
+    [
+      11,
+      43,
+      45,
+      42,
+      6,
+      45,
+      19,
+      18,
+      13,
+      24,
+      40,
+      33,
+      50,
+      5,
+      10,
+      41,
+      19,
+      24,
+      29,
+      45,
+      18,
+      8,
+      22,
+      39,
+      24,
+      26,
+      39,
+      19,
+      18
+    ],
+    4
+  ),
+  202
+);
