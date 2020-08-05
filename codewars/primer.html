@@ -1,0 +1,21 @@
+<html>
+<head>
+    <style>
+        .open {
+            background-color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        $('#dugme').click(function(){ 
+            $('#div_koji_se_menja').toggleClass('open') 
+        });
+    });
+    </script>
+</head>
+<body>
+    <button id="dugme">Stisni me</button>
+    <div id="div_koji_se_menja">Div koji se menja</div>
+</body>
+</html>
